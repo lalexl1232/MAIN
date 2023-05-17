@@ -46,38 +46,36 @@ def get_predicted_date_by_invoices(invoices: List) -> List:
 
     return predicted_results
 
-
-@timing
-def remove_old_time(predicted_data, locations: List) -> List:
-    for el in predicted_data:
-        for value in locations:
-            if value['invoice'] == el['invoice']:
-                value['arrivale_date'] = el['predicted_date']
-                break
-    return locations
-
 @timing
 def api_call():
     """
     В качестве ответа должен выдаваться повагонный список из сервиса get_current_dislocation
     с обновленной датой прибытия вагона из сервиса get_predicted_dates
-    только по вагоном, у которых она отсутствует
+    только по вагонам, у которых она отсутствует
     """
     locations = get_current_dislocation()
+
     # Получить список уникальных накладных из текущей дислокации только по тем вагонам,
     # где arrivale_date = None
+    indexes = []
     invoices = []
-    for i in locations:
-        if i["arrivale_date"] == None:
-            invoices.append(i.get("invoice"))
+    for i, location in enumerate(locations):
+        if location['arrivale_date'] is None:
+            indexes.append(i)
+            invoices.append(location.get('invoice'))
 
     predicted_data = get_predicted_date_by_invoices(invoices)
+
+    # словарь с соответствиями invoice -> predicted_date
+    predicted_dates = {data['invoice']: data['predicted_date'] for data in predicted_data}
+
     # Обновить оригинальный список вагонов данными, которые прислал сервис get_predicted_dates().
     # Заменить вагоны, где arrivale_date = None на соответствующее поле predicted_date.
+    for i in indexes:
+        invoice = locations[i]['invoice']
+        locations[i]['arrivale_date'] = predicted_dates.get(invoice)
 
-    locations = remove_old_time(predicted_data, locations)
     return locations
-
 
 
 
