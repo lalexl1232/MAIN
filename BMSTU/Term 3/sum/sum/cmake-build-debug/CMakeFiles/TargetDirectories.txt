@@ -1,3 +1,0 @@
-/Users/aleks/CLionProjects/sum/cmake-build-debug/CMakeFiles/untitled1.dir
-/Users/aleks/CLionProjects/sum/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/aleks/CLionProjects/sum/cmake-build-debug/CMakeFiles/rebuild_cache.dir
