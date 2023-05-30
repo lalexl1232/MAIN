@@ -1,0 +1,3 @@
+/Users/lalexl/CLionProjects/sem2/OPZ/cmake-build-debug/CMakeFiles/OPZ.dir
+/Users/lalexl/CLionProjects/sem2/OPZ/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/lalexl/CLionProjects/sem2/OPZ/cmake-build-debug/CMakeFiles/rebuild_cache.dir
