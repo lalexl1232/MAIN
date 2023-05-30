@@ -1,0 +1,6 @@
+Ivanov 2002 3.5
+Petrov 2004 2.1
+Matrosov 2013 4.1
+Patlop 2001 4.9
+Yuriy 2000 4.6
+Darlyng 2021 1.2
